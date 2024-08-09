@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Line Following Robot - Abhinav Ram MS</title>
+    <style>
+        body {
+            font-family: "Courier New", Courier, monospace;
+            background-color: #1a1a1a;
+            color: #00ff00;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            color: #00ff00;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: #00ff00;
+            text-decoration: none;
+        }
+
+        main {
+            padding: 2rem;
+        }
+
+        h2, h3 {
+            color: #00ff00;
+        }
+
+        pre {
+            background-color: #333;
+            padding: 1rem;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        code {
+            color: #00ff00;
+        }
+
+        footer {
+            background-color: #333;
+            color: #00ff00;
+            text-align: center;
+            padding: 0.5rem;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Line Following Robot</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="arduino-security.html">Home Security System</a></li>
+                <li><a href="plant-health-robot.html">Plant Health Robot</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Project Overview</h2>
+        <p>This project involves building a line-following robot using an IR sensor. The robot follows a line on the ground using motor controls based on sensor input.</p>
+        <h3>Components Used</h3>
+        <ul>
+            <li>Arduino</li>
+            <li>IR Sensor</li>
+            <li>DC Motors</li>
+        </ul>
+        <h3>Code</h3>
+        <pre><code>
+
+
+            int cs= A0;// CENTER SENSOR
+            int lmt1=5;// LEFT MOTOR 1
+            int lmt2=3;// LEFT MOTOR 2
+            int rmt1=6;// RIGHT MOTOR 1
+            int rmt2=11;// RIGHT MOTOR 2
+            
+            void setup() {
+              // put your setup code here, to run once:
+            
+            pinMode(8,INPUT);
+            pinMode(lmt1,OUTPUT);
+            pinMode(lmt2,OUTPUT);
+            pinMode(rmt1,OUTPUT);
+            pinMode(rmt2,OUTPUT);
+            }
+            
+            void loop() {
+              // put your main code here, to run repeatedly:
+             cs=digitalRead(8);
+              
+            if(cs==LOW)
+            {
+             stpleft();
+            }
+            else if(cs==HIGH)
+            {
+              stpright();
+            }
+            }
+            void forward(){
+              analogWrite(lmt1,150);
+              analogWrite(lmt2,0);
+              analogWrite(rmt1,150);
+              analogWrite(rmt2,0);
+              
+            }
+            void backward(){
+              analogWrite(lmt1,0);
+              analogWrite(lmt2,150);
+              analogWrite(rmt1,0);
+              analogWrite(rmt2,150);
+            }
+            void left (){
+            analogWrite(lmt1,0);
+            analogWrite(lmt2,150);
+            analogWrite(rmt1,150);
+            analogWrite(rmt2,0);
+            }
+            void right(){
+              analogWrite(lmt1,150);
+              analogWrite(lmt2,0);
+              analogWrite(rmt1,0);
+              analogWrite(rmt2,150);
+            }
+            void stp(){
+             analogWrite(lmt1,0);
+              analogWrite(lmt2,0);
+              analogWrite(rmt1,0);
+              analogWrite(rmt2,0); 
+            }
+            void stpright(){
+            analogWrite(lmt1,150);
+              analogWrite(lmt2,0);
+              analogWrite(rmt1,0);
+              analogWrite(rmt2,0); 
+            }
+            void stpleft(){
+            analogWrite(lmt1,0);
+              analogWrite(lmt2,0);
+              analogWrite(rmt1,150);
+              analogWrite(rmt2,0);   
+            }
+            
+        </code></pre>
+    </main>
+    <footer>
+        <p>&copy; 2024 Abhinav Ram MS</p>
+    </footer>
+</body>
+</html>
